@@ -19,11 +19,11 @@ class EasyLossUtil:
         # 存储所有loss数据
         self.list_array = []
         # 创建loss_num个list存储数据
-        print("要处理的loss的名字为:", end='')
+        print("要处理的loss的名字为:")
         for i in range(loss_num):
             check = self.name_dict.get(loss_name_list[i], None)
             if check is None:
-                print(loss_name_list[i], end=' ')
+                print(loss_name_list[i])
                 self.name_dict[loss_name_list[i]] = i
             else:
                 raise RuntimeError(f"loss的名字不允许重复:{str(loss_name_list)}")

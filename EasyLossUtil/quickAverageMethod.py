@@ -33,7 +33,14 @@ class QuickAverageMethod:
             average += self.data[loss_name][j] / length
         return average
 
-    def clearData(self):
+    def clearSpecificLoss(self, loss_name):
+        """
+        清除指定loss的数据
+        :param loss_name: 要清除的loss的名字
+        """
+        self.data[loss_name].clear()
+
+    def clearAllData(self):
         """
         清除所有loss数据
         """
@@ -48,5 +55,5 @@ if __name__ == "__main__":
         q.append("loss1", i)
         q.append("loss2", 10 + i)
     print(q.getAverageValue("loss1"))
-    q.clearData()
+    q.clearAllData()
     print(q.getAverageValue("loss1"))
