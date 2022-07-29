@@ -1,4 +1,4 @@
-## RsLossUtil   
+## EasyLossUtil   
 ### 简介   
 在训练神经网路模型的过程中常常有loss数据,一般表现为一个epoch出现好几个。  
 如果要使用tensorbord去可视化训练loss，我又懒得配置，因此自己写了将loss保存为文件以及图片的程序。
@@ -10,7 +10,7 @@ numpy==1.21.4
 matplotlib=3.2.2   
 
 
-### example
+### Easy Loss Util example
 
 ```python
 import os
@@ -22,12 +22,8 @@ lossUtil = EasyLossUtil(loss_name_list=name_list, loss_root_dir=os.path.join(roo
 loss1 = [1, 2, 3, 4]
 loss2 = [5, 2, 3, 4]
 for i in range(len(loss1)):
-    lossUtil.append(loss_name=name_list[0], loss_data_point=loss1[i])
-    lossUtil.append(loss_name=name_list[1], loss_data_point=loss2[i])
-lossUtil.save2File(loss_name=name_list[0])
-lossUtil.save2File(loss_name=name_list[1])
-lossUtil.save2Image(loss_name=name_list[0], image_name=name_list[0])
-lossUtil.save2Image(loss_name=name_list[1], image_name=name_list[1])
+    lossUtil.append(loss_name=name_list, loss_data=[loss1[i], loss2[i]])
+lossUtil.autoSaveFileAndImage()
 ```
 
 loss1.png   
@@ -46,3 +42,21 @@ loss1.csv:
 2   
 3   
 4   
+
+### Quick Average Method Example
+```python
+import os
+from EasyLossUtil.quickAverageMethod import QuickAverageMethod
+
+name_list = ["loss1", "loss2"]
+q = QuickAverageMethod(loss_name_list=name_list)
+loss1 = [1, 2, 3, 4, 0]
+loss2 = [5, 2, 3, 4, 0]
+for i in range(len(loss1)):
+    q.append(loss_name=name_list, value=[loss1[i], loss2[i]])
+all_avg_loss = q.getAllAvgLoss()
+print(all_avg_loss)
+```
+
+输出为:   
+[2.0, 2.8]

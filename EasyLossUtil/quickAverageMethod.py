@@ -14,12 +14,29 @@ class QuickAverageMethod:
             loss_data = []
             self.data[loss_name_list[index]] = loss_data
 
-    def append(self, loss_name:str, value):
+    def append(self, loss_name, value):
         """
-        添加一个loss值
+        添加loss值
+        :param loss_name: loss的名字  可以是一个str,也可以是str的list
+        :param value: loss的值  可以是一个值也可以是list
+        example:
+            单个数据
+                loss_name: loss_g
+                loss_data: 1
+            多个数据
+                loss_name: loss_g   loss_d
+                loss_data: 1        2
         """
-        assert loss_name in self.loss_name_list, f"loss_name:{loss_name} is not valid!"
-        self.data[loss_name].append(value)
+        loss_name_type = type(loss_name)
+        if loss_name_type is str:
+            self.data[loss_name].append(value)
+        elif loss_name_type is list:
+            assert len(loss_name) == len(value), f"loss_name和value的数据个数不一致"
+            # 依次添加
+            for idx, name in enumerate(loss_name):
+                self.data[name].append(value[idx])
+        else:
+            raise RuntimeError(f"the type of loss_name:{loss_name_type} is not valid!")
 
     def getAverageValue(self, loss_name:str):
         """
@@ -32,6 +49,17 @@ class QuickAverageMethod:
             # 第index个loss的第j个loss值
             average += self.data[loss_name][j] / length
         return average
+
+    def getAllAvgLoss(self):
+        """
+        获取所有loss的均值并且以list的形式返回
+        :return: list形式的loss的均值
+        """
+        avg_loss_list = []
+        for name in self.loss_name_list:
+            avg_loss = self.getAverageValue(loss_name=name)
+            avg_loss_list.append(avg_loss)
+        return avg_loss_list
 
     def clearSpecificLoss(self, loss_name):
         """
@@ -54,6 +82,8 @@ if __name__ == "__main__":
     for i in range(10):
         q.append("loss1", i)
         q.append("loss2", 10 + i)
-    print(q.getAverageValue("loss1"))
+    a = q.getAverageValue("loss1")
+    print(type(a))
+    print(a)
     q.clearAllData()
     print(q.getAverageValue("loss1"))
