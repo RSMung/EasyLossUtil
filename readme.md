@@ -20,7 +20,7 @@
 在不同的项目之间往往需要复制粘贴完成，所以不如写一个自己喜欢的通用的库出来算了。
 
 安装包在dist目录中, 安装命令如下:   
-`pip install .\EasyLossUtil-0.6-py3-none-any.whl`
+`pip install .\EasyLossUtil-0.7-py3-none-any.whl`
 
 ## 2 requirement
 前三个不用保持版本一致, 但是这几个库一定要有  
