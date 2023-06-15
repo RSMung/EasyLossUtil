@@ -6,6 +6,11 @@
     - [3.2 接续训练时的loss处理](#32-接续训练时的loss处理)
   - [4 Quick Average Method Example](#4-quick-average-method-example)
   - [5 torchvision.utils.save\_imge的优化版本](#5-torchvisionutilssave_imge的优化版本)
+  - [6 增加了一些通用方法](#6-增加了一些通用方法)
+    - [6.1 retainTail(num, n)函数, 将给定的数字保留指定的小数位数，可以给整数也可以是小数](#61-retaintailnum-n函数-将给定的数字保留指定的小数位数可以给整数也可以是小数)
+    - [6.2 ParamsParent类, 各个参数类的父类](#62-paramsparent类-各个参数类的父类)
+    - [6.3 formatSeconds(seconds, targetStr)函数, 将秒钟输出格式化](#63-formatsecondsseconds-targetstr函数-将秒钟输出格式化)
+
 
 # EasyLossUtil   
 ## 1 简介   
