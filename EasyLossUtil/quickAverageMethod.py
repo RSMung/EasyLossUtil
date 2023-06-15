@@ -1,5 +1,6 @@
+import torch
 
-
+@torch.no_grad()
 class QuickAverageMethod:
     def __init__(self, loss_name_list:list):
         """

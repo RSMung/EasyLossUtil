@@ -2,13 +2,16 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import torch
 
 
+@torch.no_grad()
 class EasyLossUtil:
-    def __init__(self, loss_name_list: list, loss_root_dir: str):
+    def __init__(self, loss_name_list: list, loss_root_dir: str, loadArchive: bool = False):
         """
         :param loss_name_list: 需要处理的loss的名字的列表,不允许重复   例如训练GAN时的d_loss, g_loss
         :param loss_root_dir: 存放loss数据的根目录
+        :param loadArchive: 是否加载数据存档, 有时候常常需要加载模型断点继续训练, 此时需要加载以前的loss数据
         """
         self.loss_name_list = loss_name_list
         self.loss_root_dir = loss_root_dir
@@ -31,6 +34,13 @@ class EasyLossUtil:
         # 查看数据存储目录是否存在，不存在则创建
         if not os.path.exists(loss_root_dir):
             os.mkdir(loss_root_dir)
+        # 加载存档的loss数据
+        if loadArchive:
+            for i in range(self.loss_num):
+                # 加载数据
+                loss_data_i = self.loadSingleLossDataArchive(loss_name=loss_name_list[i])
+                # 放进字典, 更新数据
+                self.data[loss_name_list[i]] = loss_data_i
 
     def append(self, loss_name, loss_data):
         """
@@ -53,13 +63,15 @@ class EasyLossUtil:
             assert len(loss_name) == len(loss_data), f"loss_name和loss_data的数据个数不一致"
             for idx in range(len(loss_name)):
                 # 依次存储所有数据
+                # 获取loss名字
                 name = loss_name[idx]
+                # 获取数据
                 d = loss_data[idx]
                 self.data[name].append(d)
         else:
             raise RuntimeError(f"loss_name 的类型: {loss_name_type} 不正确")
 
-    def saveSingleLoss2File(self, loss_name:str):
+    def saveSingleLoss2File(self, loss_name: str):
         """
         将loss数据保存为csv文件存储
         :param loss_name: 要存储的loss的名字
@@ -67,7 +79,7 @@ class EasyLossUtil:
         pdOperator = pd.DataFrame(data=self.data[loss_name])
         pdOperator.to_csv(os.path.join(self.loss_root_dir, loss_name + ".csv"), index=False, header=False)
 
-    def saveSingleLoss2Image(self, loss_name, image_name: str, line_color ="red", start_epoch: int = 0):
+    def saveSingleLoss2Image(self, loss_name, image_name: str, line_color="red", start_epoch: int = 0):
         """
         将loss数据保存为折线图
         :param loss_name: 要保存的loss
@@ -78,10 +90,11 @@ class EasyLossUtil:
         plt.figure()
         data_len = len(self.data[loss_name])
         # 注意此处stop是包含在内的, 是全闭合区间
-        x = np.linspace(start=start_epoch, stop=start_epoch + data_len-1, num=data_len, dtype=np.uint32)
+        x = np.linspace(start=start_epoch, stop=start_epoch + data_len - 1, num=data_len, dtype=np.uint32)
         # print(x)
         plt.plot(x, np.array(self.data[loss_name]), line_color, label=loss_name)
         plt.legend(loc='best')
+        plt.tight_layout(pad=0.5)  # 控制图像边缘的空白, 使得图像紧凑一些
         plt.savefig(os.path.join(self.loss_root_dir, image_name))
         plt.close()
 
@@ -94,3 +107,19 @@ class EasyLossUtil:
         for name in self.loss_name_list:
             self.saveSingleLoss2File(name)
             self.saveSingleLoss2Image(loss_name=name, image_name=name + "." + postfix)
+
+    def loadSingleLossDataArchive(self, loss_name:str):
+        """
+        从csv文件加载loss数据
+        :param loss_name: 加载的loss的名字
+        :return: 加载后的list对象
+        """
+        # header为None表示没有表头
+        loss_data = pd.read_csv(
+            os.path.join(self.loss_root_dir, loss_name + ".csv"),
+            sep=',',
+            header=None
+        )
+        loss_data = loss_data.values.squeeze()
+        loss_data = loss_data.tolist()
+        return loss_data
