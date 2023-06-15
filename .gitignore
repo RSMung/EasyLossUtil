@@ -2,3 +2,5 @@
 build
 EasyLossUtil.egg-info
 __pycache__/
+testMyUtil.py
+setup.py
