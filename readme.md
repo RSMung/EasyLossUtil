@@ -155,3 +155,41 @@ save_image(
     padding=5
 )
 ```
+
+## 6 增加了一些通用方法
+### 6.1 retainTail(num, n)函数, 将给定的数字保留指定的小数位数，可以给整数也可以是小数
+参数如下:   
+num: 给定的数字   
+n: 要求保留的位数   
+返回值: 结果字符串   
+
+### 6.2 ParamsParent类, 各个参数类的父类
+各个参数类的父类, 实现了def __repr__(self)方法,    
+使得可以直接print该类的对象, 方便输出日志   
+示例代码:   
+```python
+from EasyLossUtil.global_utils import ParamsParent
+
+class MyParams(ParamsParent):
+    my_param1 = 1
+    my_param2 = 2
+    
+my_params = MyParams()
+print(my_params)
+
+"""
+程序的输出为:   
+---MyParams---
+my_param1: 1   
+my_param2: 2   
+------------------
+"""
+```
+
+
+### 6.3 formatSeconds(seconds, targetStr)函数, 将秒钟输出格式化
+将秒钟输出格式化， 大于60秒的用分钟表示   
+参数如下:   
+seconds: 要输出的秒钟   
+targetStr: 在输出秒钟格式化信息之前的提示字符串   
+返回值: 输出的字符串   
