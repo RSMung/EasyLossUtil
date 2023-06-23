@@ -10,6 +10,9 @@
     - [6.1 retainTail(num, n)函数, 将给定的数字保留指定的小数位数，可以给整数也可以是小数](#61-retaintailnum-n函数-将给定的数字保留指定的小数位数可以给整数也可以是小数)
     - [6.2 ParamsParent类, 各个参数类的父类](#62-paramsparent类-各个参数类的父类)
     - [6.3 formatSeconds(seconds, targetStr)函数, 将秒钟输出格式化](#63-formatsecondsseconds-targetstr函数-将秒钟输出格式化)
+    - [6.4 getEqNum(pred\_vector, label)函数， 用于计算分类器预测正确率](#64-geteqnumpred_vector-label函数-用于计算分类器预测正确率)
+    - [6.5 checkDir(dir\_path)函数，如果目录不存在， 则递归的创建多级目录](#65-checkdirdir_path函数如果目录不存在-则递归的创建多级目录)
+    - [6.6 get\_lr(optimizer:torch.optim.Optimizer)，返回优化器当前的学习率](#66-get_lroptimizertorchoptimoptimizer返回优化器当前的学习率)
 
 
 # EasyLossUtil   
