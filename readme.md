@@ -198,3 +198,23 @@ my_param2: 2
 seconds: 要输出的秒钟   
 targetStr: 在输出秒钟格式化信息之前的提示字符串   
 返回值: 输出的字符串   
+
+
+### 6.4 getEqNum(pred_vector, label)函数， 用于计算分类器预测正确率
+模型预测的概率向量中最大概率的类别作为预测类别, 与标签作比较, 计算预测正确的数量 <br>
+> pred_vector: 模型输出的概率向量，形状为[Batch_size, num_categories] <br>
+> label: 标签，形状为[B_size],  例如1代表图像属于类别1 <br>
+
+### 6.5 checkDir(dir_path)函数，如果目录不存在， 则递归的创建多级目录
+dir_path: 需要创建的目录 <br>
+例程：<br>
+```python
+from EasyLossUtil.global_utils import checkDir
+dir_path = "./test1/test2"
+checkDir(dir_path)
+# 如果当前目录下文件夹test1不存在，则创建test1文件夹， 并在其中创建test2文件夹
+# 如果test1下不存在test2, 则创建test2文件夹
+# 如果两个文件夹都存在，那么不做任何动作
+```
+
+### 6.6 get_lr(optimizer:torch.optim.Optimizer)，返回优化器当前的学习率

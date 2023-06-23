@@ -1,4 +1,5 @@
-
+import torch
+import os
 
 def retainTail(num, n):
     """
@@ -120,4 +121,37 @@ def formatSeconds(seconds, targetStr):
     else:
         postfix = 'sec'
     return targetStr + ": %.2f " % seconds + postfix
+
+def getEqNum(pred_vector, label):
+    """
+    模型预测的概率向量中最大概率的类别作为预测类别, 与标签作比较, 计算预测正确的数量
+    :param pred_vector: 模型输出的概率向量  [B, num_categories]
+    :param label: 标签 [B]
+    :return: 预测正确的数量
+    """
+    # 模型预测的概率向量中最大概率的类别作为预测类别
+    # max函数返回的是[value, index]
+    pred_label = torch.max(pred_vector, dim=1)[1]   # [B]
+    # 与标签作比较
+    # print(f'预测标签:{pred_label}, 真实标签:{label}')
+    eqNum = torch.eq(pred_label, label)
+    # 计算预测正确的数量
+    eqNum = torch.sum(eqNum)
+    return eqNum.item()
+
+def checkDir(dir_path):
+    """
+    递归的创建多级目录
+    :param dir_path: 需要创建的目录
+    """
+    # exist_ok=True自动判断当文件夹已经存在就不创建
+    os.makedirs(dir_path, exist_ok=True)
+
+def get_lr(optimizer:torch.optim.Optimizer):
+    """
+    返回优化器当前的学习率
+    :param optimizer:
+    """
+    for param_group in optimizer.param_groups:
+        return param_group['lr']
 
