@@ -20,6 +20,7 @@
     - [6.4 getEqNum(pred\_vector, label)函数， 用于计算分类器预测正确率](#64-geteqnumpred_vector-label函数-用于计算分类器预测正确率)
     - [6.5 checkDir(dir\_path)函数，如果目录不存在， 则递归的创建多级目录](#65-checkdirdir_path函数如果目录不存在-则递归的创建多级目录)
     - [6.6 get\_lr(optimizer:torch.optim.Optimizer)，返回优化器当前的学习率](#66-get_lroptimizertorchoptimoptimizer返回优化器当前的学习率)
+- [LICENSE](#license)
 
 
 # EasyLossUtil   
@@ -228,3 +229,20 @@ checkDir(dir_path)
 ```
 
 ### 6.6 get_lr(optimizer:torch.optim.Optimizer)，返回优化器当前的学习率
+
+
+
+# LICENSE
+Copyright [2023] [RSMung]
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.

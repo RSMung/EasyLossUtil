@@ -19,6 +19,7 @@
     - [6.4 getEqNum(pred\_vector, label) function --- calculating the accuracy in image classification](#64-geteqnumpred_vector-label-function-----calculating-the-accuracy-in-image-classification)
     - [6.5 checkDir(dir\_path) function --- if directory that the dir\_path stands for is non-existent, then we will recursively create it.](#65-checkdirdir_path-function-----if-directory-that-the-dir_path-stands-for-is-non-existent-then-we-will-recursively-create-it)
     - [6.6 get\_lr(optimizer:torch.optim.Optimizer) function --- get the current learning rate of the given optimizer](#66-get_lroptimizertorchoptimoptimizer-function-----get-the-current-learning-rate-of-the-given-optimizer)
+- [LICENSE](#license)
 
 # EasyLossUtil   
 ## 1 Introduction
@@ -263,3 +264,19 @@ checkDir(dir_path)
 ```
 
 ### 6.6 get_lr(optimizer:torch.optim.Optimizer) function --- get the current learning rate of the given optimizer
+
+
+# LICENSE
+Copyright [2023] [RSMung]
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
