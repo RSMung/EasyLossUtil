@@ -238,7 +238,11 @@ epoch time: 32 sec
 ```
 
 ### 6.4 getEqNum(pred_vector, label) function --- calculating the accuracy in image classification
-模型预测的概率向量中最大概率的类别作为预测类别, 与标签作比较, 计算预测正确的数量 <br>
+Get the index of maximum in the prediction vector, then we regard it as the predicted label.<br>
+The next, we will compare predicted label with the ground truth<br>
+The last, we can get the corrent number, and we could compute the accuracy by the formula:<br>
+
+$acc = \frac{correct\_num}{total\_num}$
 
 > The parameters and return value for this function:<br>
 > - pred_vector: the ouput prediction vector of model, its shape is [Batch_size, num_categories] <br>
