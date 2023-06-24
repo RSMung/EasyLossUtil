@@ -1,3 +1,8 @@
+<div align='center'>
+简体中文 | <a herf="readme_EN.md">English</a>
+</div>
+
+
 - [EasyLossUtil](#easylossutil)
   - [1 简介](#1-简介)
   - [2 requirement](#2-requirement)
@@ -71,7 +76,7 @@ for i in range(total_epochs):
 lossUtil.autoSaveFileAndImage()
 ```
 **运行代码后会有以下提示:**   
-EasyLossUtil---要处理的loss的名字为:   
+EasyLossUtil---All the loss names:   
 loss1   
 loss2   
 

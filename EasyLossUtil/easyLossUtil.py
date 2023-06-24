@@ -20,7 +20,7 @@ class EasyLossUtil:
         # 用于存储所有loss数据, loss_name, list键值对
         self.data = {}
         # 检查loss_name的同时初始化字典
-        print("EasyLossUtil---要处理的loss的名字为:")
+        print("EasyLossUtil---All the loss names:")
         for i in range(self.loss_num):
             # 检测是否已经存在这个name的loss
             check = self.data.get(loss_name_list[i], None)
