@@ -242,7 +242,7 @@ Get the index of maximum in the prediction vector, then we regard it as the pred
 The next, we will compare predicted label with the ground truth<br>
 The last, we can get the corrent number, and we could compute the accuracy by the formula:<br>
 
-$acc = \frac{correct\_num}{total\_num}$
+$acc = \frac{correctNum}{totalNum}$
 
 > The parameters and return value for this function:<br>
 > - pred_vector: the ouput prediction vector of model, its shape is [Batch_size, num_categories] <br>
