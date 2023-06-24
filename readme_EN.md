@@ -1,5 +1,7 @@
 <div align='center'>
-<a herf="readme.md">简体中文</a> | English
+
+[简体中文](readme.md) | English
+
 </div>
 
 - [EasyLossUtil](#easylossutil)
