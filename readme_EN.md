@@ -30,7 +30,7 @@ As a result, I develop this simple and lightweight utils for visualing and savin
 
 The app package is in the directory named 'dist' and the `installation command` is as follows:<br>
 
-> pip install .\EasyLossUtil-0.8-py3-none-any.whl
+> pip install .\EasyLossUtil-0.9-py3-none-any.whl
 
 ## 2 requirement
 The third packages for developing this utils:<br>

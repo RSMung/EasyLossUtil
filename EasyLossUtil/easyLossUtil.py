@@ -9,9 +9,10 @@ import torch
 class EasyLossUtil:
     def __init__(self, loss_name_list: list, loss_root_dir: str, loadArchive: bool = False):
         """
-        :param loss_name_list: 需要处理的loss的名字的列表,不允许重复   例如训练GAN时的d_loss, g_loss
-        :param loss_root_dir: 存放loss数据的根目录
-        :param loadArchive: 是否加载数据存档, 有时候常常需要加载模型断点继续训练, 此时需要加载以前的loss数据
+        :param loss_name_list: the loss data that we need to visualize, no repetitive.
+        For example   d_loss, g_loss in training procedure of GAN
+        :param loss_root_dir: the root directory for saving the loss data
+        :param loadArchive: whether we want to load the checkpoints
         """
         self.loss_name_list = loss_name_list
         self.loss_root_dir = loss_root_dir
@@ -29,7 +30,7 @@ class EasyLossUtil:
                 print(loss_name_list[i])
                 self.data[loss_name_list[i]] = []
             else:
-                raise RuntimeError(f"loss的名字不允许重复:{str(loss_name_list)}")
+                raise RuntimeError(f"the name of loss are not allowed to be repetitive:{str(loss_name_list)}")
         print()
         # 查看数据存储目录是否存在，不存在则创建
         if not os.path.exists(loss_root_dir):
