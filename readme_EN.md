@@ -187,6 +187,16 @@ save_image(
 > - n: the specified number of decimal places<br>
 > - return: the result character string<br>
 
+> **Note**: I found that we can realize this function by using format() designed for str<br>
+> Reference materials: <br>
+> https://www.runoob.com/python/att-string-format.html <br>
+> https://www.w3schools.com/python/ref_string_format.asp <br>
+> And the following is an example:<br>
+```python
+a = 3.1455926
+print("a:{:.2f}".format(a))   # we also can write as this: print(f"a:{a:.2f}")
+# The output is:   3.15
+```
 ### 6.2 ParamsParent class --- Parent class of each parameter class
 this class implements the `__repr__` function<br>
 So that its child classes could be directly printd<br>

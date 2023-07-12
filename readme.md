@@ -179,6 +179,15 @@ num: 给定的数字
 n: 要求保留的位数   
 返回值: 结果字符串   
 
+> **注**: 我发现这个功能其实可以使用python的字符串格式化函数format()来实现<br>
+> 参考资料:https://www.runoob.com/python/att-string-format.html <br>
+> 例子如下:<br>
+```python
+a = 3.1455926
+print("a:{:.2f}".format(a))   # 或者print(f"a:{a:.2f}")
+# 输出结果为3.15
+```
+
 ### 6.2 ParamsParent类, 各个参数类的父类
 各个参数类的父类, 实现了def __repr__(self)方法,    
 使得可以直接print该类的对象, 方便输出日志   
