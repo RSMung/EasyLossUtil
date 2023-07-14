@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import torch
+from EasyLossUtil.global_utils import checkDir
 
 
 @torch.no_grad()
@@ -21,7 +22,8 @@ class EasyLossUtil:
         # 用于存储所有loss数据, loss_name, list键值对
         self.data = {}
         # 检查loss_name的同时初始化字典
-        print("EasyLossUtil---All the loss names:")
+        print("=== EasyLossUtil ===")
+        print("All the loss names:")
         for i in range(self.loss_num):
             # 检测是否已经存在这个name的loss
             check = self.data.get(loss_name_list[i], None)
@@ -31,10 +33,10 @@ class EasyLossUtil:
                 self.data[loss_name_list[i]] = []
             else:
                 raise RuntimeError(f"the name of loss are not allowed to be repetitive:{str(loss_name_list)}")
-        print()
         # 查看数据存储目录是否存在，不存在则创建
-        if not os.path.exists(loss_root_dir):
-            os.mkdir(loss_root_dir)
+        checkDir(loss_root_dir)
+        print(f"loss_root_dir: {loss_root_dir}")
+        print(20*"-")
         # 加载存档的loss数据
         if loadArchive:
             for i in range(self.loss_num):
