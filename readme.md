@@ -172,6 +172,23 @@ save_image(
 )
 ```
 
+> **注**: <br>
+> 如果想要保存灰度图, 也可以在使用torchvision.utils.save_image函数前, <br>
+> 用torchvision.transforms.functional中的rgb_to_grayscale函数将rgb图像变成灰度图<br>
+> 例子如下:<br>
+```python
+import torch
+from torchvision.transforms import functional as F
+from torchvision.utils import save_image
+
+
+rgb_image = torch.rand(3, 256, 256)
+grayscale_image = F.rgb_to_grayscale(rgb_image)
+assert grayscale_image.shape == (1, 256, 256)
+
+save_image(grayscale_image, "image.png")
+```
+
 ## 6 增加了一些通用方法
 ### 6.1 retainTail(num, n)函数, 将给定的数字保留指定的小数位数，可以给整数也可以是小数
 参数如下:   
@@ -218,6 +235,31 @@ my_param2: 2
 seconds: 要输出的秒钟   
 targetStr: 在输出秒钟格式化信息之前的提示字符串   
 返回值: 输出的字符串   
+
+> **注**:<br>
+> 这个功能可以使用datetime中的timedelta函数实现<br>
+> 例子如下:<br>
+```python
+import os
+import time
+from datetime import timedelta
+start_time = time.time()   # 起始时间
+time.sleep(1)   # 延迟一秒钟
+end_time = time.time()   # 结束时间
+
+# 输出消耗的时间<br>
+# 在秒数不超过一天的情况下<br>
+# str(timedelta(seconds=seconds_number))输出的结果是 hour:minute:second:microseconds<br>
+# microseconds是微秒, 与秒的进率是1e6, 只有6位有效数字<br>
+# 在hour为1位数时: h:mm:ss:ms  , 此时[2:-7]得到mm:ss  (ms有6位, -7是最后一个冒号)<br>
+print(f"epoch time cost:   {str(timedelta(seconds=end_time-start_time))[2:-7]}")
+
+# 输出结果为00:01
+
+# 也可以将秒钟化为整数再格式化
+# print(f"epoch time cost:   {str(timedelta(seconds=int(end_time-start_time)))}")
+```
+
 
 
 ### 6.4 getEqNum(pred_vector, label)函数， 用于计算分类器预测正确率
